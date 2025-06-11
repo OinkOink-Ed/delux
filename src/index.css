@@ -1,0 +1,15 @@
+@import "https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wdth,wght@6..12,112.5,300&display=swap";
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+
+@theme {
+  --font-share-tech-mono: "Share Tech Mono", monospace;
+  --font-poppins: "Poppins", sans-serif;
+  --font-roboto-slab: "Roboto Slab", serif;
+  --font-nunito-sans: "Nunito Sans", sans-serif;
+}
