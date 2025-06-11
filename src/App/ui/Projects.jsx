@@ -1,12 +1,14 @@
 import { Link } from "react-router";
 import { CardProjectMini } from "./CardProjectMini";
 
+
+//Сделать короче описание, чтобы было интересно перейти
 export function Projects() {
   return (
     <div className="flex h-auto w-full z-50 flex-col items-center gap-12 py-12 px-12">
       <article className="flex flex-col max-w-[1600px] text-wrap gap-12">
         <h1 className="text-center font-nunito-sans text-5xl">
-          Наши главные проекты
+          Наши проекты
         </h1>
         <p className="font-share-tech-mono flex max-w-[50rem] text-lg">
           Компания “SK Deluxo” выполняет широкий спектр строительно-монтажных
@@ -18,7 +20,7 @@ export function Projects() {
       <div className="flex flex-wrap max-w-[1600px] gap-8 justify-center">
         <CardProjectMini
           id="Гостиница"
-          headName="Гостиница"
+          headName="EVOPART BY BENEFIT SOCHI"
           count={7}
           text="Гостиница расположенная в самом центре города Сочи на курортном
             проспекте. На данном объекте выполнялись работы по устройству

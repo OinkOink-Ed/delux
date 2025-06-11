@@ -23,8 +23,8 @@ export default function MainPage() {
         <div className="flex flex-col gap-8 z-[1] relative px-8">
           <div className="flex flex-col text-white text-center  gap-8">
             <h1 className="text-8xl">SK Deluxo</h1>
-            <h3 className="text-2xl w-9/12 self-center">
-              Компания “SK Deluxo” выполняет широкий спектр
+            <h3 className="text-2xl w-9/12 self-center font-share-tech-mono">
+              Компания выполняет широкий спектр
               строительно-монтажных работ. Основные направления компании: ремонт
               и отделка помещений, строительство и реконструкция офисных зданий
               и сооружений любой сложности, капитальный ремонт.

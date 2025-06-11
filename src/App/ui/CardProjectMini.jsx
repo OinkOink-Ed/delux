@@ -14,8 +14,8 @@ export function CardProjectMini({ id, description, headName, count, text }) {
         </Link>
       </div>
       <div className="flex flex-col gap-x-24">
-        <h3 className="font-roboto-slab text-2xl mt-2">{headName}</h3>
-        <p className="font-poppins my-2">{description}</p>
+        <h3 className="font-share-tech-mono text-2xl mt-2">{headName}</h3>
+        <p className=" my-2 font-share-tech-mono">{description}</p>
         <Link
           to={`/project/:${id}`}
           className="underline-offset-4 underline text-blue-400 active hover:text-blue-600"

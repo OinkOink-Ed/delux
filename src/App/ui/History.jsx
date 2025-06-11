@@ -7,8 +7,8 @@ export function History() {
       className="flex h-auto w-full z-50 flex-col items-center gap-12 py-12 px-12"
     >
       <article className="flex flex-col max-w-[1600px] pt-16 text-wrap gap-8">
-        <h1 className="text-center text-5xl">О нас</h1>
-        <p className="flex max-w-[50rem]">
+        <h1 className="text-center text-5xl font-share-tech-mono">О нас</h1>
+        <p className="flex max-w-[80rem] text-lg font-share-tech-mono">
           Компания “SK Deluxo” выполняет широкий спектр строительно-монтажных
           работ. Основные направления компании: ремонт и отделка помещений,
           строительство и реконструкция офисных зданий и сооружений любой

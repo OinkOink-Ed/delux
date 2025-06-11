@@ -4,6 +4,8 @@ import { ContactsHotel } from "../components/ContactsHotel";
 import { useLocation } from "react-router";
 import { useState } from "react";
 
+// Сделать фото кликабельными чтобы открывать в полном режиме
+
 export default function Project() {
   const params = useParams();
   const { state } = useLocation();
@@ -97,6 +99,8 @@ export default function Project() {
           </div>
         </div>
 
+          {/* Сделать карусель ещё и автоматически крутящейся */}
+
         {/* Кнопки листания */}
         <button
           className="carousel-prev absolute top-1/2 left-20 -translate-y-1/2 cursor-pointer bg-black/50 text-white w-16 h-16 flex items-center justify-center hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -137,6 +141,8 @@ export default function Project() {
           </svg>
         </button>
       </div>
+
+      {/* Добавим выполненные работы для объекта */}
       {params.id.substring(1) === "Гостиница" ? <ContactsHotel /> : null}
       {params.id.substring(1) === "Котельная" ? <div></div> : null}
       {params.id.substring(1) === "Изолятор" ? <div></div> : null}
