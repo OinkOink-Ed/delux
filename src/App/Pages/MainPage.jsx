@@ -21,9 +21,9 @@ export default function MainPage() {
     <div>
       <div className="flex bg-[url(/img/Главная_1.jpeg)] bg-cover h-[50rem] bg-fixed bg-no-repeat items-center justify-center mt-24">
         <div className="flex flex-col gap-8 z-[1] relative px-8">
-          <div className="flex flex-col text-white text-center  gap-8">
-            <h1 className="text-8xl">SK Deluxo</h1>
-            <h3 className="text-2xl w-9/12 self-center font-share-tech-mono">
+          <div className="flex flex-col text-white text-center gap-8">
+            <h1 className="sm:text-8xl text-4xl">SK Deluxo</h1>
+            <h3 className="md:text-xl lg:text-2xl sm:text-xl text-lg w-9/12 self-center font-share-tech-mono 2xl:mb-50 md:mb-80 sm:mb-40">
               Компания выполняет широкий спектр
               строительно-монтажных работ. Основные направления компании: ремонт
               и отделка помещений, строительство и реконструкция офисных зданий
@@ -33,9 +33,9 @@ export default function MainPage() {
         </div>
       </div>
       <Projects />
-      <div className="flex bg-[url(/img/Главная_2.jpeg)] bg-fixed bg-cover h-[50rem] items-center justify-center"></div>
+      <div className="flex bg-[url(/img/Главная_2.jpg)] bg-fixed bg-cover h-[50rem] items-center justify-center"></div>
       <History />
-      <div className="flex bg-[url(/img/Главная_3.jpeg)] bg-fixed bg-cover h-[50rem] items-center justify-center"></div>
+      <div className="flex bg-[url(/img/Главная_3.jpg)] bg-fixed bg-cover h-[50rem] items-center justify-center"></div>
       <ContactUs />
     </div>
   );

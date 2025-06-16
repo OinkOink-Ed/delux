@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const BurgerMenu = forwardRef(function BurgerMenu({ open, func }, ref) {
   return (
     <div
-      className="w-[30px] cursor-pointer hidden max-[900px]:block"
+      className="w-[30px] cursor-pointer hidden max-[910px]:block"
       onClick={func}
       ref={ref}
     >

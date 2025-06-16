@@ -1,21 +1,36 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { ContactsHotel } from "../components/ContactsHotel";
 import { useLocation } from "react-router";
 import { useState } from "react";
+import { EvopartFrame } from "../components/EvopartFrame";
+import { IsolatorFrame } from "../components/IsolatorFrame";
+import { KotelnayaFrame } from "../components/KotelnayaFrame";
+import { useRef } from "react";
 
-// Сделать фото кликабельными чтобы открывать в полном режиме
+//Нужно потом изучить кодовую базу
 
 export default function Project() {
   const params = useParams();
   const { state } = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fullscreenImage, setFullscreenImage] = useState(null);
+  const autoScrollRef = useRef(null)
+
+  useEffect(() => {
+  const handleEsc = (e) => {
+    if (e.key === "Escape") setFullscreenImage(null);
+  };
+  window.addEventListener("keydown", handleEsc);
+  return () => window.removeEventListener("keydown", handleEsc);
+}, []);
 
   useEffect(() => {
     const carousel = document.querySelector(".carousel");
     const prevButton = document.querySelector(".carousel-prev");
     const nextButton = document.querySelector(".carousel-next");
     const images = document.querySelectorAll(".carousel-image");
+
+    if (!carousel || !prevButton || !nextButton) return;
 
     const getVisibleImages = () => {
       if (window.innerWidth < 640) return 1; // < sm: 1 изображение (w-full)
@@ -44,22 +59,74 @@ export default function Project() {
       });
     };
 
+    // Обработчики событий для паузы автопрокрутки
+  const handleMouseEnter = () => {
+    clearInterval(autoScrollRef.current);
+  };
+
+  const handleMouseLeave = () => {
+    if (!fullscreenImage) { // Запускаем только если полноэкранный режим не активен
+        autoScrollRef.current = setInterval(() => {
+          handleNext();
+        }, 2000);
+      }
+  };
+
+  // Поддержка сенсорных устройств (опционально)
+  const handleTouchStart = () => {
+    clearInterval(autoScrollRef.current);
+  };
+
+  const handleTouchEnd = () => {
+    if (!fullscreenImage) { // Запускаем только если полноэкранный режим не активен
+        autoScrollRef.current = setInterval(() => {
+          handleNext();
+        }, 2000);
+      }
+  };
+
+  if (!fullscreenImage) {
+      autoScrollRef.current = setInterval(() => {
+        handleNext();
+      }, 2000);
+    }
+
+    // Инициализация
+    updateCarousel();
+
     prevButton.addEventListener("click", handlePrev);
     nextButton.addEventListener("click", handleNext);
 
     // Обновляем карусель при изменении размера окна
     window.addEventListener("resize", updateCarousel);
 
-    // Инициализация
-    updateCarousel();
+    carousel.addEventListener("mouseenter", handleMouseEnter);
+  carousel.addEventListener("mouseleave", handleMouseLeave);
+  carousel.addEventListener("touchstart", handleTouchStart);
+  carousel.addEventListener("touchend", handleTouchEnd);
 
     // Очистка обработчиков событий
     return () => {
       prevButton.removeEventListener("click", handlePrev);
-      nextButton.removeEventListener("click", handleNext);
-      window.removeEventListener("resize", updateCarousel);
+    nextButton.removeEventListener("click", handleNext);
+    carousel.removeEventListener("mouseenter", handleMouseEnter);
+    carousel.removeEventListener("mouseleave", handleMouseLeave);
+    carousel.removeEventListener("touchstart", handleTouchStart);
+    carousel.removeEventListener("touchend", handleTouchEnd);
+    window.removeEventListener("resize", updateCarousel);
+    clearInterval(autoScrollRef.current);
     };
-  }, [currentIndex]);
+  }, [currentIndex, fullscreenImage]);
+
+  // Обработчик клика по изображению
+  const handleImageClick = (src) => {
+    setFullscreenImage(src);
+  };
+
+  // Закрытие полноэкранного режима
+  const handleCloseFullscreen = () => {
+    setFullscreenImage(null);
+  };
 
   const ArrayOfPictures = Array.from({ length: state.count }, (_, index) => ({
     src: `${params.id.substring(1)}-${index + 1}`,
@@ -69,14 +136,16 @@ export default function Project() {
     <div className="flex flex-col">
       <div
         className={`flex bg-cover h-[30rem] w-full bg-fixed bg-no-repeat`}
-        style={{ backgroundImage: `url(/img/${params.id.substring(1)}.jpg)` }}
+        style={{ backgroundImage: `url(/img/${params.id.substring(1).replaceAll(' ', '')}.jpg)` }}
       ></div>
-      <div className="flex w-full p-10">
-        <div className="flex-[3] self-center justify-items-center">
-          <h1 className="text-4xl">{params.id.substring(1)}</h1>
+      <div className="flex w-full py-10 flex-col gap-10 lg:flex-row lg:gap-0">
+        <div className="flex-[3] self-center justify-items-center 2xl:pl-30 xl:pl-20 px-10">
+          <h1 className="max-w-[600px] text-4xl text-center font-share-tech-mono">{params.id.substring(1)}</h1>
+          <br />
+          <p className=" max-w-[600px] text-center font-share-tech-mono">{state.address}</p>
         </div>
-        <div className="flex-[6] self-center justify-items-center">
-          <p className="max-w-[600px]">{state.p}</p>
+        <div className="flex-[6] self-center justify-items-center px-10">
+          <p className="max-w-[600px] font-share-tech-mono">{state.p}</p>
         </div>
       </div>
       <div className="relative w-full px-12 mx-auto my-8">
@@ -92,7 +161,8 @@ export default function Project() {
                 <img
                   src={`/img/${params.id.substring(1)}/${item.src}.jpeg`}
                   alt="Image 1"
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
+                  onClick={() => handleImageClick(`/img/${params.id.substring(1)}/${item.src}.jpeg`)}
                 />
               </div>
             ))}
@@ -142,10 +212,32 @@ export default function Project() {
         </button>
       </div>
 
+            {fullscreenImage && (
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 transition-opacity duration-300"
+          onClick={handleCloseFullscreen}
+        >
+          <span
+            className="absolute top-4 right-4 text-white text-4xl cursor-pointer"
+            onClick={handleCloseFullscreen}
+          >
+            ×
+          </span>
+          <img
+            src={fullscreenImage}
+            alt="Fullscreen"
+            className="max-w-[90%] max-h-[90%] object-contain"
+          />
+        </div>
+      )}
+
       {/* Добавим выполненные работы для объекта */}
-      {params.id.substring(1) === "Гостиница" ? <ContactsHotel /> : null}
-      {params.id.substring(1) === "Котельная" ? <div></div> : null}
-      {params.id.substring(1) === "Изолятор" ? <div></div> : null}
+      <div className="self-center pb-10">
+        {params.id.substring(1) === "EVOPART BY BENEFIT SOCHI" ? <EvopartFrame /> : null}
+        {params.id.substring(1) === "Котельная" ? <KotelnayaFrame/> : null}
+        {params.id.substring(1) === "Изолятор" ? <IsolatorFrame/> : null}
+      </div>
+      
     </div>
   );
 }

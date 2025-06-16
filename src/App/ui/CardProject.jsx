@@ -8,7 +8,7 @@ export function CardProject({ id, description, headName, count, text }) {
       <div className="flex h-auto overflow-hidden min-h-[534px]">
         <Link to={`/project/:${id}`} state={{ count, p: `${text}` }}>
           <img
-            src={`/img/${id}.jpg`}
+            src={`/img/${id.replaceAll(' ', '')}.jpg`}
             className="transition-transform duration-300 ease-in-out transform hover:scale-110 w-full h-full object-cover self-center"
           ></img>
         </Link>

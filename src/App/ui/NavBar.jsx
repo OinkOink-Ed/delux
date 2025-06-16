@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import BurgerMenu from "./BurgerMenu";
+import { NavLink } from "react-router";
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,39 +39,57 @@ export function NavBar() {
   return (
     <nav className="flex h-24 w-full px-28 justify-between items-center bg-white fixed z-10">
       <Link to={"/"}>
-        <img src="/img/Logo.jpg" alt="" className=" pointer max-md: h-18" />
+        <img
+    src="/img/Logo.png"
+    alt="Large Logo"
+    className="h-18 hidden sm:block"
+  />
+  <img
+    src="/img/Logo-short.png"
+    alt="Small Logo"
+    className="h-18 block sm:hidden"
+  />
       </Link>
 
-      <div className="flex gap-4 max-[900px]:hidden">
-        <Link
+      <div className="flex gap-4 max-[910px]:hidden">
+        <NavLink
           to={"/"}
-          className="self-center font-roboto-slab hover:text-blue-400"
+          // className="self-center font-roboto-slab hover:text-blue-400"
+          className={({ isActive }) =>
+                      isActive
+                        ? "self-center font-roboto-slab text-blue-400"
+                        : "self-center font-roboto-slab hover:text-blue-400"
+                    }
         >
           Главная
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           to="/#About"
-          className="self-center font-poppins hover:text-blue-400"
+          className="self-center font-roboto-slab hover:text-blue-400"
         >
           О нас
-        </Link>
+        </NavLink>
         {/* <Link to={"meet-the-team"} className="self-center">
           Meet The Team
         </Link> */}
-        <Link to={"projects"} className="self-center hover:text-blue-400">
+        <NavLink to={"projects"} className={({ isActive }) =>
+                      isActive
+                        ? "self-center font-roboto-slab text-blue-400"
+                        : "self-center font-roboto-slab hover:text-blue-400"
+                    }>
           Проекты
-        </Link>
-        <Link to={"/#ContactUs"} className="self-center hover:text-blue-400">
+        </NavLink>
+        <NavLink to={"/#ContactUs"} className="self-center font-roboto-slab hover:text-blue-400">
           Контакты
-        </Link>
+        </NavLink>
         {/* <img src="./" alt="Соц" className="self-center"></img> */}
       </div>
       <BurgerMenu ref={burgerRef} func={toggleMenu} open={isOpen} />
       <div
         ref={menuRef}
         className={` bg-white shadow-lg transition-all duration-300 ease-in-out top-24 right-0 w-52 absolute ${
-          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+          isOpen ? "translate-y-0 opacity-100 rounded-bl-sm" : "translate-y-full opacity-0"
         }`}
       >
         <div className="flex flex-col items-center justify-center gap-2 h-full py-3">
