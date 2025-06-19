@@ -11,8 +11,9 @@ export default function MainPage() {
     if (location.hash) {
       const id = location.hash.substring(1);
       const element = document.getElementById(id);
-      if (element) {
+      if (element.id) {
         element.scrollIntoView({ behavior: "smooth" });
+        console.log("к элементу");
       }
     }
   }, [location]);
@@ -24,10 +25,10 @@ export default function MainPage() {
           <div className="flex flex-col text-white text-center gap-8">
             <h1 className="sm:text-8xl text-4xl">SK Deluxo</h1>
             <h3 className="md:text-xl lg:text-2xl sm:text-xl text-lg w-9/12 self-center font-share-tech-mono 2xl:mb-50 md:mb-80 sm:mb-40">
-              Компания выполняет широкий спектр
-              строительно-монтажных работ. Основные направления компании: ремонт
-              и отделка помещений, строительство и реконструкция офисных зданий
-              и сооружений любой сложности, капитальный ремонт.
+              Компания выполняет широкий спектр строительно-монтажных работ.
+              Основные направления компании: ремонт и отделка помещений,
+              строительство и реконструкция офисных зданий и сооружений любой
+              сложности, капитальный ремонт.
             </h3>
           </div>
         </div>
