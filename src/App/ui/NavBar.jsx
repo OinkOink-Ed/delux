@@ -40,15 +40,15 @@ export function NavBar() {
     <nav className="flex h-24 w-full px-28 justify-between items-center bg-white fixed z-10">
       <Link to={"/"}>
         <img
-    src="/img/Logo.png"
-    alt="Large Logo"
-    className="h-18 hidden sm:block"
-  />
-  <img
-    src="/img/Logo-short.png"
-    alt="Small Logo"
-    className="h-18 block sm:hidden"
-  />
+          src="/img/Logo.png"
+          alt="Large Logo"
+          className="h-18 hidden sm:block"
+        />
+        <img
+          src="/img/Logo-short.png"
+          alt="Small Logo"
+          className="h-18 block sm:hidden"
+        />
       </Link>
 
       <div className="flex gap-4 max-[910px]:hidden">
@@ -56,10 +56,10 @@ export function NavBar() {
           to={"/"}
           // className="self-center font-roboto-slab hover:text-blue-400"
           className={({ isActive }) =>
-                      isActive
-                        ? "self-center font-roboto-slab text-blue-400"
-                        : "self-center font-roboto-slab hover:text-blue-400"
-                    }
+            isActive
+              ? "self-center font-roboto-slab text-blue-400"
+              : "self-center font-roboto-slab hover:text-blue-400"
+          }
         >
           Главная
         </NavLink>
@@ -73,14 +73,20 @@ export function NavBar() {
         {/* <Link to={"meet-the-team"} className="self-center">
           Meet The Team
         </Link> */}
-        <NavLink to={"projects"} className={({ isActive }) =>
-                      isActive
-                        ? "self-center font-roboto-slab text-blue-400"
-                        : "self-center font-roboto-slab hover:text-blue-400"
-                    }>
+        <NavLink
+          to={"projects"}
+          className={({ isActive }) =>
+            isActive
+              ? "self-center font-roboto-slab text-blue-400"
+              : "self-center font-roboto-slab hover:text-blue-400"
+          }
+        >
           Проекты
         </NavLink>
-        <NavLink to={"/#ContactUs"} className="self-center font-roboto-slab hover:text-blue-400">
+        <NavLink
+          to={"/#ContactUs"}
+          className="self-center font-roboto-slab hover:text-blue-400"
+        >
           Контакты
         </NavLink>
         {/* <img src="./" alt="Соц" className="self-center"></img> */}
@@ -89,7 +95,9 @@ export function NavBar() {
       <div
         ref={menuRef}
         className={` bg-white shadow-lg transition-all duration-300 ease-in-out top-24 right-0 w-52 absolute ${
-          isOpen ? "translate-y-0 opacity-100 rounded-bl-sm" : "translate-y-full opacity-0"
+          isOpen
+            ? "translate-y-0 opacity-100 rounded-bl-sm block pointer-events-auto"
+            : "translate-y-full opacity-0 pointer-events-none"
         }`}
       >
         <div className="flex flex-col items-center justify-center gap-2 h-full py-3">

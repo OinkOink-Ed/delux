@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router";
 import {
   App,
   MainPage,
-  // MeetTheTeam,
-  Project,
+  ProjectEvopartByBenefitSochi,
+  ProjectIsolator,
+  ProjectKotelnaya,
   Projects,
 } from "./indexLazyImport";
 import { SpinnerLoad } from "../ui/SpinnerLoad";
@@ -22,17 +23,21 @@ export const router = createBrowserRouter([
         index: true,
         element: <MainPage />,
       },
-      // {
-      //   path: "meet-the-team",
-      //   element: <MeetTheTeam />,
-      // },
       {
         path: "projects",
         element: <Projects />,
       },
       {
-        path: "project/:id",
-        element: <Project />,
+        path: "project/evopartbybenefitsochi",
+        element: <ProjectEvopartByBenefitSochi />,
+      },
+      {
+        path: "project/isolator",
+        element: <ProjectIsolator />,
+      },
+      {
+        path: "project/kotelnaya",
+        element: <ProjectKotelnaya />,
       },
     ],
     errorElement: <div>Такой страницы не существует</div>,
