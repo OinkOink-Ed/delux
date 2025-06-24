@@ -13,3 +13,33 @@ html {
   --font-roboto-slab: "Roboto Slab", serif;
   --font-nunito-sans: "Nunito Sans", sans-serif;
 }
+
+@layer utilities {
+  .parallax-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .parallax-bg {
+    height: 120%; /* Дополнительное пространство для параллакса */
+    width: 100%;
+    will-change: transform; /* Оптимизация анимации */
+  }
+
+  .transform-gpu {
+    transform: translate3d(0, 0, 0); /* Включает аппаратное ускорение */
+  }
+
+  /* Поддержка Retina-дисплеев */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bg-main-1 {
+      background-image: url("/img/Главная_1_mini@2x.jpg");
+    }
+    .bg-main-2 {
+      background-image: url("/img/Главная_2_mini@2x.jpg");
+    }
+    .bg-main-3 {
+      background-image: url("/img/Главная_3_mini@2x.jpg");
+    }
+  }
+}

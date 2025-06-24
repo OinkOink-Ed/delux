@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { KotelnayaFrame } from "../components/KotelnayaFrame";
 import { useRef } from "react";
+import { Parallax } from "../components/Parallax";
 
 //Нужно потом изучить кодовую базу
 
@@ -205,12 +206,16 @@ export default function ProjectKotelnaya() {
 
   return (
     <div className="flex flex-col">
-      <div
-        className={`flex bg-cover h-[30rem] w-full bg-fixed bg-no-repeat`}
-        style={{
-          backgroundImage: `url(/img/Котельная.jpg)`,
-        }}
-      ></div>
+      <Parallax />
+      <div className="parallax-container relative overflow-hidden md:h-[50rem] h-[30rem] flex items-center justify-center mt-24">
+        <div
+          className="parallax-bg absolute inset-0 bg-[url(/img/Котельная.jpg)] md:bg-[url(/img/Котельная.jpg)] bg-cover bg-no-repeat h-[120%] w-full transform-gpu"
+          style={{
+            transform: "translateY(var(--scroll))",
+            willChange: "transform",
+          }}
+        ></div>
+      </div>
       <div className="flex w-full py-10 flex-col gap-10 lg:flex-row lg:gap-0">
         <div className="flex-[3] self-center justify-items-center 2xl:pl-30 xl:pl-20 px-10">
           <h1 className="max-w-[600px] text-4xl text-center font-share-tech-mono">

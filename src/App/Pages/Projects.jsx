@@ -1,10 +1,21 @@
+import { Parallax } from "../components/Parallax";
 import { CardProject } from "../ui/CardProject";
 
 export default function Projects() {
   return (
     <div>
-      <div className="flex bg-[url(/img/AllProjects.jpg)] bg-cover h-[50rem] bg-fixed bg-no-repeat"></div>
-      <div className="flex h-auto  justify-center flex-col items-center">
+      {/* Секция Projects: Баннер с параллаксом */}
+      <Parallax />
+      <div className="parallax-container relative overflow-hidden md:h-[50rem] h-[30rem] flex items-center justify-center mt-24">
+        <div
+          className="parallax-bg absolute inset-0 bg-[url(/img/AllProjects_mini.jpg)] md:bg-[url(/img/AllProjects.jpg)] bg-cover bg-no-repeat h-[120%] w-full transform-gpu"
+          style={{
+            transform: "translateY(var(--scroll))",
+            willChange: "transform",
+          }}
+        ></div>
+      </div>
+      <div className="flex h-auto justify-center flex-col items-center z-[1] relative">
         <h1 className="text-4xl md:text-6xl py-10">Проекты</h1>
         <div className="flex h-auto max-w-[1600px] justify-center gap-24 flex-wrap pb-10">
           <CardProject
@@ -15,13 +26,12 @@ export default function Projects() {
           <CardProject
             id="isolator"
             headName="Изолятор"
-            description="Изолятор 3 для размещение обезьян расположенный в Научно-исследовательском центре института медицинской приматологии в Адлерском районе города Сочи. На данном объекте производилась реконструкция здания. Были выполнены отделочные, сантехнические, электромонтажные, вентиляционные, фасадные и кровельные работы.
-"
+            description="Изолятор 3 для размещение обезьян расположенный в Научно-исследовательском центре института медицинской приматологии в Адлерском районе города Сочи. На данном объекте производилась реконструкция здания. Были выполнены отделочные, сантехнические, электромонтажные, вентиляционные, фасадные и кровельные работы."
           />
           <CardProject
             id="kotelnaya"
             headName="Котельная"
-            description="Котельная газовая расположенная в Научно-исследовательском центре института медицинской приматологии в Адлерском районе города Сочи. На данном объекте был выполнен косметическо-восстановительный ремонт всей котельной, включая фасады, остекления, внутрення отделка и замена кровельного покрытия."
+            description="Котельная газовая расположенная в Научно-исследовательском центре института медицинской приматологии в Адлерском районе города Сочи. На данном объекте был выполнен косметическо-восстановительный ремонт всей котельной, включая фасады, остекления, внутренняя отделка и замена кровельного покрытия."
           />
         </div>
       </div>
