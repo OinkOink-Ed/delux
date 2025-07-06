@@ -200,7 +200,7 @@ export default function ProjectKotelnaya() {
     setFullscreenImage(null);
   };
 
-  const ArrayOfPictures = Array.from({ length: 10 }, (_, index) => ({
+  const ArrayOfPictures = Array.from({ length: 40 }, (_, index) => ({
     src: `Котельная-${index + 1}`,
   }));
 
@@ -248,11 +248,11 @@ export default function ProjectKotelnaya() {
                 key={item.src}
               >
                 <img
-                  src={`/img/Котельная/${item.src}.jpeg`}
+                  src={`/img/Котельная/${item.src}.jpg`}
                   alt="Image 1"
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
                   onClick={() =>
-                    handleImageClick(`/img/Котельная/${item.src}.jpeg`)
+                    handleImageClick(`/img/Котельная/${item.src}.jpg`)
                   }
                 />
               </div>
@@ -323,8 +323,11 @@ export default function ProjectKotelnaya() {
       )}
 
       {/* Добавим выполненные работы для объекта */}
-      <div className="self-center pb-10">
+      <div className="self-center pb-10 flex w-max">
         <KotelnayaFrame />
+        {/* <div>
+          <p className="max-w-[600px] font-share-tech-mono">Проверка текста</p>
+        </div> */}
       </div>
     </div>
   );

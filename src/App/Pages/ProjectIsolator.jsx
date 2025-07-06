@@ -206,7 +206,7 @@ export default function ProjectIsolator() {
     setFullscreenImage(null);
   };
 
-  const ArrayOfPictures = Array.from({ length: 7 }, (_, index) => ({
+  const ArrayOfPictures = Array.from({ length: 40 }, (_, index) => ({
     src: `Изолятор-${index + 1}`,
   }));
 
@@ -254,11 +254,11 @@ export default function ProjectIsolator() {
                 key={item.src}
               >
                 <img
-                  src={`/img/Изолятор/${item.src}.jpeg`}
+                  src={`/img/Изолятор/${item.src}.jpg`}
                   alt="Image 1"
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 cursor-pointer"
                   onClick={() =>
-                    handleImageClick(`/img/Изолятор/${item.src}.jpeg`)
+                    handleImageClick(`/img/Изолятор/${item.src}.jpg`)
                   }
                 />
               </div>
